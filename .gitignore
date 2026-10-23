@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+Obsidian_VLSM_DualStack.md
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.streamlit/secrets.toml
+*.xlsx
+!samples/*.xlsx
+.env
+.DS_Store
+dist/
+build/
+.coverage
+htmlcov/

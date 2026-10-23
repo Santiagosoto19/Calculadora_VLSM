@@ -1,0 +1,37 @@
+[server]
+address = "127.0.0.1"
+port = 8501
+headless = true
+runOnSave = true
+fileWatcherType = "auto"
+enableCORS = true
+enableXsrfProtection = true
+corsAllowedOrigins = ["http://127.0.0.1:8501", "http://localhost:8501"]
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+
+[client]
+toolbarMode = "auto"
+showSidebarNavigation = false
+
+[theme]
+base = "light"
+primaryColor = "#2563EB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#111827"
+font = "sans serif"
+
+[theme.light]
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#111827"
+primaryColor = "#2563EB"
+
+[theme.dark]
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#111827"
+primaryColor = "#2563EB"
