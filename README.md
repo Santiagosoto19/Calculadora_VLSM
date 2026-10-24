@@ -113,7 +113,3 @@ Opciones útiles de IPv6: `--prefix`, `--count`, `-s Nombre:dispositivos`, `--ni
 En IPv4 cada subred pide hosts útiles. El bloque asignado es la potencia de 2 que cubre hosts + 2 (red y broadcast), salvo `/31` y `/32`. Por defecto se atiende primero la subred más grande. «Respetar el orden de la tabla» conserva el orden del enunciado.
 
 En IPv6 se puede delegar un prefijo fijo (`/64`, `/127`) o calcular el prefijo según la cantidad de dispositivos.
-
-## Qué no se sube a Git
-
-`.gitignore` deja fuera `.venv/`, `__pycache__/`, `.env`, `.streamlit/secrets.toml` y los `.xlsx` generados.
