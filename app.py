@@ -30,7 +30,6 @@ from core.vlsm_v4 import calculate_vlsm_grouped, calculate_vlsm_v4
 
 st.set_page_config(
     page_title="Calculadora VLSM",
-    page_icon="🌐",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -231,12 +230,14 @@ def _clase_barra_uso(result: ExportResult) -> str:
 
 def _hero(protocol: str) -> None:
     if protocol == "IPv4":
+        variant = "hero--ipv4"
         kicker, title, blurb = (
             "IPv4 · VLSM",
             "Subdivisión de redes IPv4",
             "Por defecto las solicitudes se ordenan de mayor a menor. Puedes respetar el orden de la tabla. Cada bloque usa la máscara más pequeña que cubre hosts + 2.",
         )
     else:
+        variant = "hero--ipv6"
         kicker, title, blurb = (
             "IPv6 · Prefix Delegation",
             "Subdivisión y delegación IPv6",
@@ -244,7 +245,7 @@ def _hero(protocol: str) -> None:
         )
     st.markdown(
         f"""
-        <section class="hero">
+        <section class="hero {variant}">
           <span class="hero-kicker">{escape(kicker)}</span>
           <h1>{escape(title)}</h1>
           <p>{escape(blurb)}</p>
@@ -367,11 +368,16 @@ def _config_tabla(frame: pd.DataFrame) -> dict:
 
 def _tabla_principal(result: ExportResult) -> None:
     frame = result_to_dataframe(result)
+    orden = list(frame.columns)
+    if "Red" in orden and "CIDR" in orden:
+        orden.remove("CIDR")
+        orden.insert(orden.index("Red") + 1, "CIDR")
     st.dataframe(
         frame,
         hide_index=True,
         use_container_width=True,
         column_config=_config_tabla(frame),
+        column_order=orden,
     )
 
 
@@ -478,7 +484,7 @@ def _diagrama_v4(result: ExportResult) -> alt.Chart:
             x=alt.X("Tamaño:Q", title="Tamaño de bloque", stack=None),
             color=alt.Color(
                 "Tipo:N",
-                scale=alt.Scale(domain=["Asignado", "Libre"], range=["#2563EB", "#9CA3AF"]),
+                scale=alt.Scale(domain=["Asignado", "Libre"], range=["#1B4F8A", "#8F8474"]),
                 legend=alt.Legend(title=""),
             ),
             tooltip=[
@@ -487,8 +493,18 @@ def _diagrama_v4(result: ExportResult) -> alt.Chart:
             ],
         )
         .properties(height=altura)
+        .configure(background="#FFFEFB")
         .configure_view(strokeWidth=0)
-        .configure_axis(grid=False)
+        .configure_axis(
+            grid=False,
+            labelColor="#3F3A33",
+            titleColor="#5C564C",
+            domainColor="#D6D1C7",
+            tickColor="#D6D1C7",
+            labelFont="IBM Plex Sans",
+            titleFont="IBM Plex Sans",
+        )
+        .configure_legend(labelColor="#3F3A33", labelFont="IBM Plex Sans")
     )
 
 
@@ -516,7 +532,7 @@ def _diagrama_v6(result: IPv6Result) -> alt.Chart:
             ),
             color=alt.Color(
                 "Tipo:N",
-                scale=alt.Scale(domain=["Asignado", "Libre"], range=["#2563EB", "#9CA3AF"]),
+                scale=alt.Scale(domain=["Asignado", "Libre"], range=["#0F6E6B", "#8F8474"]),
                 legend=alt.Legend(title=""),
             ),
             tooltip=[
@@ -525,8 +541,18 @@ def _diagrama_v6(result: IPv6Result) -> alt.Chart:
             ],
         )
         .properties(height=120)
+        .configure(background="#FFFEFB")
         .configure_view(strokeWidth=0)
-        .configure_axis(grid=False)
+        .configure_axis(
+            grid=False,
+            labelColor="#3F3A33",
+            titleColor="#5C564C",
+            domainColor="#D6D1C7",
+            tickColor="#D6D1C7",
+            labelFont="IBM Plex Sans",
+            titleFont="IBM Plex Sans",
+        )
+        .configure_legend(labelColor="#3F3A33", labelFont="IBM Plex Sans")
     )
 
 

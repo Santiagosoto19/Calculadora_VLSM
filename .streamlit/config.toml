@@ -18,20 +18,22 @@ showSidebarNavigation = false
 
 [theme]
 base = "light"
-primaryColor = "#2563EB"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#FFFFFF"
-textColor = "#111827"
-font = "sans serif"
+primaryColor = "#1B4F8A"
+backgroundColor = "#F3F1EA"
+secondaryBackgroundColor = "#FFFEFB"
+textColor = "#1C1915"
+font = "sans-serif"
 
 [theme.light]
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#FFFFFF"
-textColor = "#111827"
-primaryColor = "#2563EB"
+backgroundColor = "#F3F1EA"
+secondaryBackgroundColor = "#FFFEFB"
+textColor = "#1C1915"
+primaryColor = "#1B4F8A"
 
+# Consola clara: el bloque oscuro repite la paleta para que los
+# widgets no inviertan si el cliente pide tema oscuro.
 [theme.dark]
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#FFFFFF"
-textColor = "#111827"
-primaryColor = "#2563EB"
+backgroundColor = "#F3F1EA"
+secondaryBackgroundColor = "#FFFEFB"
+textColor = "#1C1915"
+primaryColor = "#1B4F8A"
