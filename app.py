@@ -1,4 +1,4 @@
-"""Interfaz web local (Streamlit) de la calculadora VLSM Dual-Stack."""
+"""Interfaz web de Slicer, calculadora de subredes IPv4 e IPv6."""
 
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ from core.subnet_v6 import calculate_ipv6
 from core.vlsm_v4 import calculate_vlsm_grouped, calculate_vlsm_v4
 
 st.set_page_config(
-    page_title="Calculadora VLSM",
+    page_title="Slicer",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -232,14 +232,14 @@ def _hero(protocol: str) -> None:
     if protocol == "IPv4":
         variant = "hero--ipv4"
         kicker, title, blurb = (
-            "IPv4 · VLSM",
+            "Slicer · IPv4",
             "Subdivisión de redes IPv4",
             "Por defecto las solicitudes se ordenan de mayor a menor. Puedes respetar el orden de la tabla. Cada bloque usa la máscara más pequeña que cubre hosts + 2.",
         )
     else:
         variant = "hero--ipv6"
         kicker, title, blurb = (
-            "IPv6 · Prefix Delegation",
+            "Slicer · IPv6",
             "Subdivisión y delegación IPv6",
             "Prefijos fijos (/64, /127) o bits de interfaz por dispositivos. Anycast de router = IID todo cero.",
         )
@@ -697,7 +697,7 @@ def render_ipv4() -> None:
         ["Calculadora", "Resultados", "Diagrama del bloque", "Exportar"]
     )
     result: ExportResult | None = None
-    stem = "vlsm-ipv4"
+    stem = "slicer-ipv4"
 
     with tab_calc:
         layout = st.radio(
@@ -763,7 +763,7 @@ def render_ipv4() -> None:
                 )
 
             result = _resolver_calculo("v4_result", _calcular_grupos)
-            stem = "vlsm-ipv4-grupos"
+            stem = "slicer-ipv4-grupos"
         else:
             izquierda, derecha = st.columns([1, 2])
             with izquierda:
@@ -787,7 +787,7 @@ def render_ipv4() -> None:
                 return calculate_vlsm_v4(cidr, requests, sort_largest_first=not input_order)
 
             result = _resolver_calculo("v4_result", _calcular_listado)
-            stem = "vlsm-ipv4"
+            stem = "slicer-ipv4"
 
     with tab_res:
         if result is None:
@@ -923,7 +923,7 @@ def render_ipv6() -> None:
         if result is None:
             _aviso_sin_resultado()
         else:
-            _downloads(result, "vlsm-ipv6")
+            _downloads(result, "slicer-ipv6")
 
 
 def main() -> None:
@@ -933,8 +933,8 @@ def main() -> None:
         st.markdown(
             """
             <div class="sidebar-brand">
-              <h2>VLSM</h2>
-              <p>Calculadora local IPv4 / IPv6</p>
+              <h2>Slicer</h2>
+              <p>Subredes IPv4 e IPv6</p>
             </div>
             """,
             unsafe_allow_html=True,

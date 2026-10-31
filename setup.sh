@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configura el entorno virtual local y lanza la calculadora VLSM Dual-Stack.
+# Configura el entorno virtual local y lanza Slicer.
 # Uso:
 #   ./setup.sh              # instala deps y abre Streamlit en 127.0.0.1:8501
 #   ./setup.sh --cli -- ipv4 192.168.10.0/24 -s LAN:100 -s WAN:2
@@ -21,7 +21,7 @@ CLI_ARGS=()
 
 usage() {
   cat <<'EOF'
-setup.sh — entorno local privado para VLSM Dual-Stack
+setup.sh — entorno local de Slicer
 
   ./setup.sh                 Crea .venv, instala requirements y abre Streamlit
   ./setup.sh --install-only  Solo crea el venv e instala dependencias

@@ -1,4 +1,4 @@
-"""CLI Linux para cálculos VLSM IPv4 e IPv6.
+"""Terminal de Slicer para cálculos VLSM IPv4 e IPv6.
 
 Ejemplos:
     python cli.py ipv4 192.168.10.0/24 -s LAN:100 -s WAN:2 --excel plan.xlsx
@@ -87,9 +87,9 @@ def _emit(result: ExportResult, *, excel: str | None, csv_path: str | None, json
 
 
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})
-@click.version_option(version="1.0.0", prog_name="vlsm")
+@click.version_option(version="1.0.0", prog_name="slicer")
 def main() -> None:
-    """Calculadora VLSM Dual-Stack (IPv4 / IPv6) — 100 % local."""
+    """Slicer — subredes IPv4 (VLSM) e IPv6."""
 
 
 @main.command("ipv4")
