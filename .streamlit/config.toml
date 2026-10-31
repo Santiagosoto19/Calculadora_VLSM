@@ -1,16 +1,14 @@
+# En local, setup.sh fija 127.0.0.1:8501.
+# En Streamlit Community Cloud no se fija la dirección: la plataforma
+# publica el puerto y un origen distinto de localhost.
 [server]
-address = "127.0.0.1"
-port = 8501
 headless = true
 runOnSave = true
 fileWatcherType = "auto"
-enableCORS = true
 enableXsrfProtection = true
-corsAllowedOrigins = ["http://127.0.0.1:8501", "http://localhost:8501"]
 
 [browser]
 gatherUsageStats = false
-serverAddress = "localhost"
 
 [client]
 toolbarMode = "auto"
